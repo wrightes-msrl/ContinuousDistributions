@@ -10,7 +10,7 @@
 
 P=normcdf(16,17.3,2.7)-normcdf(15,17.3,2.7)
 %% 
-% A census worker has learned that human life expectancy in his arena of study 
+% A census worker has learned that human life expectancy in his area of study 
 % is a normally distributed random variable witha mean value of 81.35 years and 
 % a standard deviation of 11.64 years. Therefore, the probability any given person 
 % in that region will live more than 90 years $(x>90)$ is
@@ -37,11 +37,13 @@ P=normcdf(6,5.6934,0.2530,'upper')
 
 mu=10
 %% 
-% parts per million. The technician takes 15 independent nitrate measurements 
+% parts per million. The technician takes 20 independent nitrate measurements 
 % from a test well down-gradient of the septic system and finds the following 
 % levels (in parts per million):
 
-D=[14.7137, 13.8745, 10.7293, 8.7689, 14.8821, 9.6489, 15.1748, 12.2348, 12.1531, 13.6441, 14.7137, 13.8745, 10.7293, 8.7689, 14.8821, 9.6489, 15.1748, 12.2348, 12.1531, 13.6441]
+D=[14.7137, 13.8745, 10.7293, 8.7689, 14.8821, 9.6489, 15.1748, 12.2348, ...
+    12.1531, 13.6441, 14.7137, 13.8745, 10.7293, 8.7689, 14.8821, 9.6489, ...
+    15.1748, 12.2348, 12.1531, 13.6441]
 %% 
 % He computes the mean of this sample to find that 
 
@@ -62,9 +64,9 @@ z=(xb-mu)/(sigma/sqrt(length(D)))
 % true, but in order to quantify this, he observes that the probability that $z$ 
 % should be found at or above the value she calcluated is small:
 
-normcdf(z,'upper')
+P=normcdf(z,'upper')
 %% 
-% Thsi is a very small probablity, so she concludes that the landowner's claim 
+% This is a very small probablity, so she concludes that the landowner's claim 
 % is unlikely to be true.
 %% $\chi^2$ Distribution
 % A manufacturer of gold ingots desires to maintain a high degree of consistency 
@@ -75,9 +77,12 @@ mu=1000
 %% 
 % grams. The plant manager will consider that the production consistency of 
 % gold ingots is out of tolerance if he has reason to believe that the true value 
-% of the standard deviation of ingot masses is more than 0.001 grams. In order 
-% to determine whether or not this is the case, the plant manager requires that 
-% an occasional sample of 
+% of the standard deviation of ingot masses is more than 
+
+sigma=0.001
+%% 
+% grams. In order to determine whether or not this is the case, the plant manager 
+% requires that an occasional sample of 
 
 n=25
 %% 
@@ -94,11 +99,11 @@ s=0.0015
 % 
 % |or|
 
-chi2=24*(0.0015^2)/(0.001^2)
+chi2=(n-1)*(s^2)/(sigma^2)
 %% 
 % Using the $\chi^2$ distribution with
 
-nu=24
+nu=n-1
 %% 
 % degrees of freedom, the plant manager determines that the probability of observing 
 % a sample with a sample standard deviation of at least 0.0015 is
